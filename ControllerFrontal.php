@@ -3,12 +3,19 @@ class FrontController
 {
     static function main()
     {
+        session_start();
         //Incluimos algunas clases:
         require_once "config/view.php";
-        require_once 'model/Usuarios.php'; //de configuracion
-        require_once'controller/UsuariosController.php'; //PDO con singleton
         require_once 'config/view.php'; //Mini motor de plantillas
         
+        foreach (glob('controller/*.php') as $filename)
+        {
+            include_once $filename;
+        }
+        foreach (glob('model/*.php') as $filename)
+        {
+            include_once $filename;
+        }
         $URI = explode("?", $_SERVER['REQUEST_URI']);
         $url = explode("index.php/", $URI[0]);
         $ruta;

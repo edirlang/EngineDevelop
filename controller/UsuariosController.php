@@ -2,35 +2,47 @@
 	
 	class UsuariosController{
 		
-		private $vista;
-		
 		public function __construct() {
-			$this->vista = new View();
+			
 		}
 
 		public function index(){
-			$data = array();
-			$this->vista->show("login.php", $data);
+			require_once "model/Usuarios.php";
+			$usuariosall = new Usuarios();
+			$usuarios = $usuariosall->getAll();
+			require "view/Usuarios.php";
 		}
 
+		public function login(){
+			require "view/login.php";
+		}
 		public function Nuevo(){
-			$data = array();
-			$this->vista->show("NuevoUsuario.php", $data);	
+			require "view/NuevoUsuario.php";	
 		}
 
 		public function save(){
 			require_once "model/Usuarios.php";
+			require_once "model/Empresa.php";
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				$usuario = new Usuarios;
+				$empresa = new Empresa;
 				$usuario->setCedula($_POST['Cedula']);
 				$usuario->setNombre( $_POST['Nombre']);
 				$usuario->setApellido($_POST['Apellido']);
 				$usuario->setEmail( $_POST['Email']);
 				$usuario->setTelefono( $_POST['Telefono']);
-				$usuario->setRol($_POST['rol']);
+				$usuario->setRol('empresario');
 				$usuario->setPassword($_POST['Contrasena']);
 				$usuario->setSalt('salt');
 				echo $usuario->save_usuario();
+
+				$empresa->setNit($_POST['nit']);
+				$empresa->setNombre($_POST['nombre_empresa']);
+				$empresa->setTelefono($_POST['telefono_empresa']);
+				$empresa->setDireccion($_POST['direccion_empresa']);
+				$empresa->setRepresentante($_POST['Cedula']);
+				echo $empresa->save_empresa();
+
 				header("location: ../Usuarios/index");
 				
 			}
@@ -43,27 +55,31 @@
 				
 				$usuario = $Usuarios->getBy("cedula",$_POST['usuario']);
 				
-				if(isset($usuario)){
+				if(isset($usuario['password'])){
 					$contrasena = crypt($_POST['contrasena'],"sha542").$usuario['salt'];
 					if( $usuario['password'] == $contrasena){
-						session_start();
+						
 						$_SESSION['usario'] = $usuario['cedula'];
 						$_SESSION['Nombre'] = $usuario['nombre']." ".$usuario['apellido'];
-						$this->vista->show("clientes.php",null);
+						$_SESSION['rol'] = $usuario['rol'];
+						require "view/clientes.php";
 					}else{
+						$_SESSION['error'] ="Usuario o contraseña erronea";
 						$this->index();
 					}
-				}else
+				}else{
+					$_SESSION['error'] ="Usuario o contraseña erronea";
 					$this->index();
+				}
 			}
 		}
 
 		public function Salir(){
-			session_start();
 			$_SESSION['usario'] = null;
 			$_SESSION['Nombre'] = null;
+			$_SESSION['rol'] = null;
 			session_destroy();
-			$this->vista->show("index/index.php",null);
+			require "view/index/index.php";
 		}
 	}
  ?>

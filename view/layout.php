@@ -1,4 +1,3 @@
-<?php ob_start(); ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -17,32 +16,38 @@
 </head>
 
 <body>
-  <nav class="navbar navbar-inverse">
-    <a class="navbar-brand" href="admin"><span class="glyphicon glyphicon-home"></span> HOME</a>
-    <ul class="nav navbar-nav">
-      <li ><a href="/EngineDevelop/index.php"><span class="glyphicon glyphicon-book"></span> Quienes Somos</a></li>
-      <li><a href="/EngineDevelop/index.php/index/Mision"><span class="glyphicon glyphicon-list"></span> Mision</a></li>
-      <li><a href="/EngineDevelop/index.php/index/Vision"><span class="glyphicon glyphicon-briefcase"></span> Vision</a></li>
-      
-    <ul class="nav navbar-nav navbar-right">
-      <li class="dropdown">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Login</span></a>
-        <ul class="dropdown-menu" role="menu">
-          <li><a href="/EngineDevelop/index.php/Usuarios/Index"><span class="glyphicon glyphicon-log-out"></span>Ingresar</a></li>
-          <li><a href="/EngineDevelop/index.php/Usuarios/Nuevo"><span class="glyphicon glyphicon-log-out"></span>Nueva Cuenta</a></li>
-        </ul>
-      </li>
-    </ul>
-  </nav>
+  <?php 
+  
+  if (isset($_SESSION['rol'])) {
+    if ($_SESSION['rol']=='admin') {
+      include "view/menu_admin.php";
+    }elseif ($_SESSION['rol']=='empresario') {
+      include "view/menu_empresario.php";
+    }
+  }else{
+    include "view/menu.php";
+  }
+   ?>
+  <?php echo $menu ?>
   <div class="container">
     <div class="row">
-      <?php echo $contenido; ?>
+      <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <?php if(isset($_SESSION['error'])){ ?>
+          <div class="alert alert-warning alert-danger">
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+              <?php  echo $_SESSION['error']; ?>
+          </div>
+          <?php }  ?>
+        </div>
+        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
+          <?php echo $contenido; ?>  
+        </div>
     </div>  
   </div>
 
-  <script language="javascript" type="text/javascript" src="/Smart-Solutions/js/jquery.js"></script>
-  <script language="javascript" type="text/javascript" src="/Smart-Solutions/js/jquery.validate.js"></script>
-  <script src="/Smart-Solutions/js/bootstrap.min.js"></script>
-  <script src="/Smart-Solutions/js/jquery-ui.js"></script>
+  <script language="javascript" type="text/javascript" src="/EngineDevelop/view/js/jquery.js"></script>
+  <script language="javascript" type="text/javascript" src="/EngineDevelop/view/js/jquery.validate.js"></script>
+  <script src="/EngineDevelop/view/js/bootstrap.min.js"></script>
+  <script src="/EngineDevelop/view/js/jquery-ui.js"></script>
 </body>   
 </html>

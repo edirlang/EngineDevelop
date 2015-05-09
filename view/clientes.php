@@ -5,4 +5,4 @@
   </div>
 </div>
 <?php $contenido = ob_get_clean(); ?>
-<?php include "view/layout2.php"; ?>
+<?php include "view/layout.php"; ?>
