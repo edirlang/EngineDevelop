@@ -24,7 +24,7 @@
 			if($_SERVER['REQUEST_METHOD']=='GET'){
 				require_once "model/Usuarios.php";
 				$usuarios = new Usuarios();
-				echo $_GET['id'];
+				
 				$usuario = $usuarios->getBy('cedula',$_GET['id']);
 				require "view/EditarUsuario.php";
 			}

@@ -22,3 +22,11 @@ create table empresa(
 	primary key(nit,representante),
 	foreign key (representante) references usuarios(cedula)
 );
+
+create table oferta(
+	id int NOT NULL AUTO_INCREMENT,
+	nombre varchar(20),
+	descripcion text,
+	precio int,
+	primary key(id)
+);

@@ -17,7 +17,7 @@
 			if($_SERVER['REQUEST_METHOD']=='GET'){
 				require_once "model/Empresa.php";
 				$empresas = new Empresa();
-				echo $_GET['id'];
+				
 				$empresa = $empresas->getBy('nit',$_GET['id']);
 				require "view/EditarEmpresa.php";
 			}
