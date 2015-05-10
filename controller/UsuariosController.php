@@ -20,6 +20,29 @@
 			require "view/NuevoUsuario.php";	
 		}
 
+		public function Editar(){
+			if($_SERVER['REQUEST_METHOD']=='GET'){
+				require_once "model/Usuarios.php";
+				$usuarios = new Usuarios();
+				echo $_GET['id'];
+				$usuario = $usuarios->getBy('cedula',$_GET['id']);
+				require "view/EditarUsuario.php";
+			}
+
+			if($_SERVER['REQUEST_METHOD']=='POST'){
+				require_once "model/Usuarios.php";
+				$usuario = new Usuarios();
+				$usuario->setCedula($_POST['Cedula']);
+				$usuario->setNombre($_POST['Nombre']);
+				$usuario->setApellido($_POST['Apellido']);
+				$usuario->setTelefono($_POST['Telefono']);
+				$usuario->setEmail($_POST['Email']);
+				$_SESSION['error'] =  $usuario->update_usuario();
+				$this->index();
+			}
+
+		}
+
 		public function save(){
 			require_once "model/Usuarios.php";
 			require_once "model/Empresa.php";
@@ -43,7 +66,7 @@
 				$empresa->setRepresentante($_POST['Cedula']);
 				echo $empresa->save_empresa();
 
-				header("location: ../Usuarios/index");
+				header("location: ../Usuarios/login");
 				
 			}
 		}
@@ -65,11 +88,11 @@
 						require "view/clientes.php";
 					}else{
 						$_SESSION['error'] ="Usuario o contraseña erronea";
-						$this->index();
+						$this->login();
 					}
 				}else{
 					$_SESSION['error'] ="Usuario o contraseña erronea";
-					$this->index();
+					$this->login();
 				}
 			}
 		}

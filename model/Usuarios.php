@@ -95,5 +95,18 @@
         //$this->db()->error;
         return $save;
 		}
+
+		public function update_usuario(){
+			$this->salt = md5(time());
+			$query="UPDATE usuarios set 
+						nombre='".$this->getNombre()."',
+                       telefono = '".$this->getTelefono()."',
+                       email='".$this->getEmail()."',
+                       apellido='".$this->getApellido()."' 
+                        WHERE cedula='".$this->getCedula()."'";
+        $save=$this->getCrear($query);
+        //$this->db()->error;
+        return $save;
+		}
 	}
  ?>

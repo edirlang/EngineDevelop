@@ -19,7 +19,7 @@
       <td> <?php echo $usuario['apellido']; ?> </td>
       <td> <?php echo $usuario['telefono']; ?> </td>
       <td> <?php echo $usuario['email']; ?> </td>
-      <td> <a href="/EngineDevelop/index.php/usuario/Editar?id=<?php echo $usuario['cedula']; ?>">Editar</a> </td>
+      <td> <a href="/EngineDevelop/index.php/Usuarios/Editar?id=<?php echo $usuario['cedula']; ?>">Editar</a> </td>
     </tr>
     <?php } ?>
     
