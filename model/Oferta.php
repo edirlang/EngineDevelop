@@ -6,6 +6,7 @@
 		private $nombre;
 		private $descripcion;
 		private $precio;
+		private $archivo;
 
 	public function __construct() {
 			$table="oferta";
@@ -114,7 +115,8 @@
 						'',
 	                   '".$this->getNombre()."',
 	                   '".$this->getDescripcion()."',
-	                   '".$this->getPrecio()."');";
+	                   '".$this->getPrecio()."',
+	                   '".$this->getArchivo()."');";
 	    $save=$this->getCrear($query);
 	    //$this->db()->error;
 	    return $save;
@@ -125,11 +127,36 @@
 			$query="UPDATE oferta set 
 						nombre='".$this->getNombre()."',
 	                   descripcion = '".$this->getDescripcion()."',
-	                   precio='".$this->getPrecio()."' 
+	                   precio ='".$this->getPrecio()."',
+	                   archivo ='".$this->getArchivo()."' 
 	                    WHERE id='".$this->getId()."'";
 	    $save=$this->getCrear($query);
 	    //$this->db()->error;
 	    return $save;
 		}
-	}
+	
+    /**
+     * Sets the value of archivo.
+     *
+     * @param mixed $archivo the archivo
+     *
+     * @return self
+     */
+    public function setArchivo($archivo)
+    {
+        $this->archivo = $archivo;
+
+        return $this;
+    }
+
+    /**
+     * Gets the value of archivo.
+     *
+     * @return mixed
+     */
+    public function getArchivo()
+    {
+        return $this->archivo;
+    }
+}
 	?>

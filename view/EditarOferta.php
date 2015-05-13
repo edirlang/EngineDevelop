@@ -3,7 +3,7 @@
 
   <div class="panel-body">
 
-    <form id="formulario" name="formulario" role="form" method="post" action="../Oferta/Editar">
+    <form id="formulario" name="formulario" role="form" method="post" action="../Oferta/Editar" enctype="multipart/form-data">
      <div class="form-group">
       <div class="panel panel-info col-xs-12 col-sm-12 col-md-12 col-lg-12">
         <div class="panel-heading">
@@ -22,6 +22,11 @@
 
           <label for="">Precio</label>
           <input type="number" class="form-control" id="precio" name="precio" placeholder="valor a la venta" value="<?php echo $oferta['precio']; ?>">
+        
+          <label for="">Imagen</label>
+          <label><img src="/EngineDevelop/<?php echo $oferta['archivo']; ?>" alt="" width="50%" height="50%"> </label>
+          <input type="file" id="foto" name="foto" />
+
         </div>
       </div>
 

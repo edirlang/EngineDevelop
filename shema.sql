@@ -28,5 +28,6 @@ create table oferta(
 	nombre varchar(20),
 	descripcion text,
 	precio int,
+	archivo varchar(255),
 	primary key(id)
 );
