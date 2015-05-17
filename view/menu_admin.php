@@ -7,6 +7,7 @@
       <li><a href="/EngineDevelop/index.php/Empresa/index">Empresas</a></li>
       <li><a href="/EngineDevelop/index.php/Asesor/index">Empleados</a></li>
       <li><a href="/EngineDevelop/index.php/Oferta/index">Ofertas</a></li>
+      <li><a href="/EngineDevelop/index.php/Solicitud/index">Solicitar Soporte</a></li>
       
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">

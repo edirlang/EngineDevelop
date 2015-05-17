@@ -39,3 +39,23 @@ create table oferta(
 	archivo varchar(255),
 	primary key(id)
 );
+
+create table solicitud(
+	id int NOT NULL AUTO_INCREMENT,
+	cliente varchar(15),
+	tipo varchar(20),
+	descripcion text,
+	fecha date,
+	hora TIME,
+	primary key(id),
+	foreign key(cliente) references usuarios(cedula)
+);
+
+create table solicitud_asesor(
+	solicitud int,
+	asesor varchar(15),
+	fecha date,
+	primary key(solicitud, asesor),
+	foreign key(solicitud) references solicitud(id),
+	foreign key (asesor) references asesor(cod_usuario)
+);
