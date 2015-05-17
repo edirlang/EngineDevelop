@@ -13,6 +13,14 @@ create table usuarios(
 	primary key(cedula)
 );
 
+create table asesor(
+	cod_usuario varchar(15),
+	salario int,
+	fecha date,
+	primary key(cod_usuario),
+	foreign key (cod_usuario) references usuarios (cedula)
+);
+
 create table empresa(
 	nit varchar(15),
 	nombre varchar(50),

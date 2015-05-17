@@ -3,8 +3,8 @@
 class EntidadBase{
 
     private $table;
-    private $db;
-    private $conectar;
+    protected $db;
+    protected $conectar;
 
     public function __construct($table) {
         $this->table = (string) $table;
