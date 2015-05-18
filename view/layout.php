@@ -23,6 +23,8 @@
       include "view/menu_admin.php";
     }elseif ($_SESSION['rol']=='empresario') {
       include "view/menu_empresario.php";
+    }elseif ($_SESSION['rol']=='asesor') {
+      include "view/menu_asesor.php";
     }
   }else{
     include "view/menu.php";

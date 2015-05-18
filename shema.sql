@@ -47,6 +47,7 @@ create table solicitud(
 	descripcion text,
 	fecha date,
 	hora TIME,
+	estado varchar(1),
 	primary key(id),
 	foreign key(cliente) references usuarios(cedula)
 );
@@ -55,6 +56,8 @@ create table solicitud_asesor(
 	solicitud int,
 	asesor varchar(15),
 	fecha date,
+	hora time,
+	respuesta text,
 	primary key(solicitud, asesor),
 	foreign key(solicitud) references solicitud(id),
 	foreign key (asesor) references asesor(cod_usuario)
