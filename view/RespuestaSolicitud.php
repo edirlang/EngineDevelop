@@ -11,9 +11,9 @@
         <label>Respuesta</label>
         <textarea name="descripcion" id="inputDescripcion" class="form-control" required="required"></textarea>
         <label for="">Fecha de Visita</label>
-        <input type="text" name="fecha" id="inputFecha" class="form-control" value="" required="required" pattern="" title="">
+        <input type="date" name="fecha" id="inputFecha" class="form-control" value="" required="required" pattern="" title="">
         <label for="">Hora de visita</label>
-        <input type="text" name="hora" id="inputHora" class="form-control" value="" required="required" pattern="" title="">
+        <input type="time" name="hora" id="inputHora" class="form-control" value="" required="required" pattern="" title="">
       </div>
         <button id="Enviar"  class="btn btn-primary">Guardar</button>
     </form>

@@ -82,7 +82,7 @@
 					$contrasena = crypt($_POST['contrasena'],"sha542").$usuario['salt'];
 					if( $usuario['password'] == $contrasena){
 						
-						$_SESSION['usario'] = $usuario['cedula'];
+						$_SESSION['usuario'] = $usuario['cedula'];
 						$_SESSION['Nombre'] = $usuario['nombre']." ".$usuario['apellido'];
 						$_SESSION['rol'] = $usuario['rol'];
 						require "view/clientes.php";

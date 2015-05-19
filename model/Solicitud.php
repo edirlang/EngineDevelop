@@ -8,6 +8,7 @@
         private $descripcion;
         private $fecha;
         private $hora;
+        private $estado;
 
         public function __construct() {
          $table="solicitud";
@@ -177,5 +178,39 @@
                     //$this->db()->error;
             return $save;
         }
+
+        public function CambiarEstado()
+        {
+            $query="UPDATE solicitud set 
+                        estado='".$this->getEstado()."' 
+                        WHERE id='".$this->getId()."'";
+            $save=$this->getCrear($query);
+            //$this->db()->error;
+            return $save;
+        }
+    
+    /**
+     * Gets the value of estado.
+     *
+     * @return mixed
+     */
+    public function getEstado()
+    {
+        return $this->estado;
     }
+
+    /**
+     * Sets the value of estado.
+     *
+     * @param mixed $estado the estado
+     *
+     * @return self
+     */
+    public function setEstado($estado)
+    {
+        $this->estado = $estado;
+
+        return $this;
+    }
+}
 ?>

@@ -20,7 +20,7 @@
 			if($_SERVER['REQUEST_METHOD'] == 'POST'){
 				$solicitud = new Solicitud();
 				$solicitud->setDescripcion($_POST['descripcion']);
-				$solicitud->setCliente($_SESSION['usario']);
+				$solicitud->setCliente($_SESSION['usuario']);
 				$solicitud->setTipo($_POST['tipo']);
 				$solicitud->GuardarSolicitud();
 				$_SESSION['error'] = "Solicitud Envida";

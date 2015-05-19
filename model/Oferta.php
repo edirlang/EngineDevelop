@@ -110,7 +110,7 @@
 	}
 
 	public function GuardarOferta(){
-			$this->salt = md5(time());
+			
 			$query="INSERT INTO oferta VALUES(
 						'',
 	                   '".$this->getNombre()."',
@@ -123,7 +123,7 @@
 		}
 
 	public function ActualizarOferta(){
-			$this->salt = md5(time());
+	
 			$query="UPDATE oferta set 
 						nombre='".$this->getNombre()."',
 	                   descripcion = '".$this->getDescripcion()."',
