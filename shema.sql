@@ -62,3 +62,24 @@ create table solicitud_asesor(
 	foreign key(solicitud) references solicitud(id),
 	foreign key (asesor) references asesor(cod_usuario)
 );
+
+create table factura(
+	id int AUTO_INCREMENT,
+	fecha date,
+	hora time,
+	cliente varchar(15),
+	asesor varchar(15),
+	total int,
+	estado varchar(1),
+	primary key (id),
+	foreign key (cliente) references usuarios(cedula),
+	foreign key (asesor) references asesor(cod_usuario)	
+);
+
+create table servicio(
+	id int,
+	nombre varchar(20),
+	valor int,
+	primary key(id),
+	foreign key(id) references factura (id)
+);

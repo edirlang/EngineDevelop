@@ -3,7 +3,7 @@
     <a class="navbar-brand" href="admin"><span class="glyphicon glyphicon-home"></span> HOME</a>
     <ul class="nav navbar-nav">
       <li><a href="/EngineDevelop/index.php/Solicitud/Nueva">Solicitar Soporte</a></li>
-      <li><a href="#">Solicitar Software</a></li>
+      <li><a href="/EngineDevelop/index.php/Factura/Cliente">Pago de Servicios</a></li>
       <li><a href="/EngineDevelop/index.php/Oferta/Catalogo"><span class="glyphicon glyphicon-briefcase"></span>Catalogo de Software</a></li>
       
     <ul class="nav navbar-nav navbar-right">

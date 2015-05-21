@@ -7,6 +7,7 @@
       <th>Fecha</th>
       <th>Hora</th>
       <th>Descripcion</th>
+      <th></th>
     </tr>
   </thead>
   <tbody>
@@ -17,7 +18,12 @@
       <td> <?php echo $solicitud['fecha']; ?> </td>
       <td> <?php echo $solicitud['hora']; ?> </td>
       <td> <?php echo $solicitud['descripcion']; ?> </td>
-      
+      <td>
+        <?php if ($solicitud['estado'] == '1' ): ?>
+          <a class="btn btn-xs" href="/EngineDevelop/index.php/Factura/Nueva?id=<?php echo $solicitud['id']; ?>">Cobrar</a>  
+        <?php endif ?>
+        
+      </td>
     </tr>
     <?php } ?>
     

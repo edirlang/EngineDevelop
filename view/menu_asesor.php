@@ -13,7 +13,12 @@
           <li><a href="/EngineDevelop/index.php/SolicitudAsesor/SolicitudSinResponder">Sin Responder</a></li>
         </ul>
       </li>
-      
+      <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown">Factura</a>
+        <ul class="dropdown-menu" role="menu">
+          <li><a href="/EngineDevelop/index.php/Factura/asesor">Facturas</a></li>
+        </ul>
+      </li>
       
     <ul class="nav navbar-nav navbar-right">
       <li class="dropdown">
