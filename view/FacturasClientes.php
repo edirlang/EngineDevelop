@@ -10,7 +10,8 @@
     </tr>
   </thead>
   <tbody>
-    <?php foreach ($facturas as $factura) { ?>
+    <?php foreach ($facturas as $factura) {
+    if(isset($factura['asesor'])){ ?>
     <tr>
       
       <td> <?php echo $factura['id']; ?> </td>
@@ -19,10 +20,11 @@
       <td> <?php echo $factura['total']; ?> </td>
       <td> 
         <?php if ($factura['estado'] == '0' ) : ?>
-          <a class="btn btn-success btn-xs" href="/EngineDevelop/index.php/Factura/Pago?id=<?php echo $factura['id']; ?>">Pagar</a> </td>  
+          <a class="btn btn-success btn-xs" href="/EngineDevelop/index.php/Factura/Pago?id=<?php echo $factura['id']; ?>">Cancelar</a> </td>  
         <?php endif ?>
     </tr>
-    <?php } ?>
+    <?php }
+    } ?>
     
   </tbody>
 </table>

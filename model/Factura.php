@@ -163,13 +163,30 @@
 
     public function GuardarFactura()
     {
-        $this->salt = md5(time());
+        
             $query="INSERT INTO factura VALUES(
                         '',
                        '".$this->getFecha()."',
                        '".$this->getHora()."',
                        '".$this->getCliente()."',
                        '".$this->getAsesor()."',
+                       '".$this->getTotal()."',
+                       '".$this->getEstado()."'
+                       )";
+        $save=$this->getCrear($query);
+        //$this->db()->error;
+        return $save;
+    }
+
+    public function GuardarFactura2()
+    {
+        
+            $query="INSERT INTO factura VALUES(
+                        '',
+                       '".$this->getFecha()."',
+                       '".$this->getHora()."',
+                       '".$this->getCliente()."',
+                       null,
                        '".$this->getTotal()."',
                        '".$this->getEstado()."'
                        )";

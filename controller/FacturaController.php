@@ -88,5 +88,20 @@
 			}
 		}
 
+		public function NuevaFactura($cliente, $total){
+			$Factura = new Factura();
+			
+			$Factura->setFecha(date("Y-m-d"));
+			$Factura->setHora(date("h:m"));
+			$Factura->setTotal($total);
+			
+			$Factura->setCliente($cliente);
+			$Factura->setEstado('0');
+			$_SESSION['error'] = $Factura->GuardarFactura2();
+				
+			return $Factura->UltimaFactura();
+			
+		}
+
 	}
  ?>

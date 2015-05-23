@@ -83,3 +83,11 @@ create table servicio(
 	primary key(id),
 	foreign key(id) references factura (id)
 );
+
+create table facturaOferta(
+	id int,
+	oferta int,
+	primary key(id,oferta),
+	foreign key(id) references factura(id),
+	foreign key(oferta) references oferta(id)
+);

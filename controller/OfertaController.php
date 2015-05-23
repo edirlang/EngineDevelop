@@ -108,5 +108,45 @@
 			$ofertas = $Oferta->getAll();
 			require "view/Catalogo.php";		
 		}
+
+		public function Comprar()
+		{
+			if($_SERVER['REQUEST_METHOD']=='GET'){
+				$Oferta = new Oferta();
+				$id_oferta = $_GET['id'];
+
+				$oferta = $Oferta->getBy('id',$id_oferta);
+				
+				$Factura = new FacturaController();
+
+				$factura = $Factura->NuevaFactura($_SESSION['usuario'], $oferta['precio']);
+
+				$FacturaOferta = new FacturaOferta();
+				$FacturaOferta->setId($factura['id']);
+				$FacturaOferta->setOferta($id_oferta);
+				$_SESSION['error'] = $_SESSION['error']." ".$FacturaOferta->GuardarFacturaOferta();
+
+				require "view/Comprar.php";
+			}
+		}
+
+		public function Pagar()
+		{
+			if($_SERVER['REQUEST_METHOD']=='GET'){
+				$id_factura = $_GET['id'];
+
+				$Factura = new Factura();
+				$factura = $Factura->getBy('id',$id_factura);
+
+				$FacturaOferta = new FacturaOferta();
+				$factura_oferta = $FacturaOferta->getBy('id',$id_factura);
+				
+				$Oferta = new Oferta();
+				
+				$oferta = $Oferta->getBy('id',$factura_oferta['oferta']);
+				
+				require "view/Pago.php";
+			}
+		}
 	}
  ?>
