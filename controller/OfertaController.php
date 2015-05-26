@@ -124,7 +124,7 @@
 				$FacturaOferta = new FacturaOferta();
 				$FacturaOferta->setId($factura['id']);
 				$FacturaOferta->setOferta($id_oferta);
-				$_SESSION['error'] = $_SESSION['error']." ".$FacturaOferta->GuardarFacturaOferta();
+				$_SESSION['error'] = $FacturaOferta->GuardarFacturaOferta();
 
 				require "view/Comprar.php";
 			}

@@ -17,7 +17,7 @@
 
 					<form action="https://www.sandbox.paypal.com/cgi-bin/webscr" method="post">
 						<input type="hidden" name="cmd" value="_xclick">
-						<input type="hidden" name="business" value="edison9417@openalfa.com">
+						<input type="hidden" name="business" value="edison9417-facilitator@hotmail.com">
 						<input type="hidden" name="item_name" value="Premium Subscription">
 						<input type="hidden" name="currency_code" value="USD">
 						<input type="hidden" name="amount" value="<?php echo $oferta['precio']; ?>">
