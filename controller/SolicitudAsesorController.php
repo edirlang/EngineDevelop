@@ -18,6 +18,14 @@
 			require "view/SolicitudesAsesor.php";
 		}
 
+		public function RespuestaUsuario(){
+			require_once "model/Solicitud.php";
+			$SolicitudAsesor = new SolicitudAsesor();
+			$respuestas = $SolicitudAsesor->RespuestaCliente($_SESSION['usuario']);
+			
+			require "view/Respuestas.php";
+		}
+
 		public function SolicitudSinResponder()
 		{
 			require_once "model/Solicitud.php";

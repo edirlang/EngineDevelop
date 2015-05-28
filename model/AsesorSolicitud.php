@@ -145,5 +145,17 @@
             //$this->db()->error;
             return $save;
         }
+
+        public function RespuestaCliente($cliente)
+        {
+            $resultSet = array();
+        $query = $this->db->query("SELECT solicitud.id as solicitud, solicitud.cliente, solicitud.tipo, solicitud.descripcion,solicitud.fecha,  solicitud.hora, solicitud_asesor.asesor, solicitud_asesor.respuesta, solicitud_asesor.fecha as fechaR, solicitud_asesor.hora as HoraR FROM solicitud, solicitud_asesor WHERE solicitud_asesor.solicitud = solicitud.id and solicitud.cliente='$cliente'");
+        while ($fila = mysqli_fetch_assoc($query)) {
+            array_push($resultSet, $fila);
+        }
+        return $resultSet;
+        }
+
+        
     }
 ?>
