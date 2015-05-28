@@ -15,7 +15,7 @@
               <label>Contraseña</label>
               <input type="password" name="contrasena" id="input" class="form-control" required="required" title="">
             </div>
-            <button type="submit" class="btn btn-primary">Iniciar Sesion</button>
+            <button type="submit" class="btn btn-primary"><span class="glyphicon glyphicon-log-in"></span> Iniciar Sesion</button>
           </form>
         </div>
       </div>

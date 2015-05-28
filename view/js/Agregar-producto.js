@@ -27,6 +27,7 @@ function calcular_cambio(evt){
 
 function AgregarServicio()
 {
+
   $('#formulario').validate({
     rules: {
      'servicio': 'required',
@@ -62,14 +63,14 @@ function VaciarFormulario(){
 
 function Enviar(){
   var jdatos = JSON.stringify(servicios); 
-
+  alert($("#total").text());
   $.post("Nueva",{
     num_fact: $("#numero").val(),
     id: $("#solicitud").val(),
     fecha: $("#fecha").val(),
     hora: $("#hora").val(),
     cliente: $("#cedula").val(),
-    total: $("#total").text,
+    total: $("#total").text(),
     jdatos: jdatos
   },procesar); 
 }

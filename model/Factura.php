@@ -195,6 +195,15 @@
         return $save;
     }
 
+    public function ActualizarFactura()
+    {
+        $query="UPDATE factura set estado ='".$this->getEstado()."'
+                       where id='".$this->getId()."'";
+        $save=$this->getCrear($query);
+        //$this->db()->error;
+        return $save;
+    }
+
     public function FacturasAsesor($asesor)
     {
         $resultSet = array();

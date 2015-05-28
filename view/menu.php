@@ -11,7 +11,7 @@
           <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span> Login</span></a>
           <ul class="dropdown-menu" role="menu">
             <li><a href="/EngineDevelop/index.php/Usuarios/login"><span class="glyphicon glyphicon-log-out"></span>Ingresar</a></li>
-            <li><a href="/EngineDevelop/index.php/Usuarios/Nuevo"><span class="glyphicon glyphicon-log-out"></span>Nueva Cuenta</a></li>
+            <li><a href="/EngineDevelop/index.php/Usuarios/Nuevo"><span class="glyphicon glyphicon-plus"></span>Nueva Cuenta</a></li>
           </ul>
         </li>
       </ul>

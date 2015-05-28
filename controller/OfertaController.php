@@ -82,7 +82,7 @@
 				$oferta->setDescripcion($_POST['descipcion']);
 				$oferta->setPrecio($_POST['precio']);
 				$oferta->setArchivo($archivoNuevo);
-				$_SESSION['error'] =  $_SESSION['error']." ".$oferta->ActualizarOferta();
+				$_SESSION['error'] =  $_SESSION['error'].$oferta->ActualizarOferta();
 				header("location: ../Oferta/index");
 			}
 		}
@@ -130,11 +130,22 @@
 			}
 		}
 
-		public function Pagar()
+		
+	public function RecivirPago($id_factura)
 		{
+				$FacturaNueva = new Factura();
+				$FacturaNueva->setEstado("1");
+				$FacturaNueva->setId($id_factura);
+				$_SESSION['error'] = $FacturaNueva->ActualizarFactura();	
+		}
+
+	public function Pago()
+		{
+			
 			if($_SERVER['REQUEST_METHOD']=='GET'){
 				$id_factura = $_GET['id'];
-
+				$tipo = $_GET['f'];
+				$this->RecivirPago($id_factura);
 				$Factura = new Factura();
 				$factura = $Factura->getBy('id',$id_factura);
 
@@ -143,10 +154,15 @@
 				
 				$Oferta = new Oferta();
 				
-				$oferta = $Oferta->getBy('id',$factura_oferta['oferta']);
-				
-				require "view/Pago.php";
+				if($tipo=='0'){
+					$oferta = $Oferta->getBy('id',$factura_oferta['oferta']);
+					require "view/Pago.php";
+				}else{
+					$FacturaController = new FacturaController();
+					$FacturaController->cliente();
+				}
 			}
 		}
 	}
+
  ?>

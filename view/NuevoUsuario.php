@@ -51,7 +51,7 @@
         
       </div>
       <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-        <button id="Enviar"  class="btn btn-primary">Guardar</button>
+        <button id="Enviar"  class="btn btn-primary"> <span class="glyphicon glyphicon-floppy-save"></span> Guardar</button>
       </div>
     </form>
     

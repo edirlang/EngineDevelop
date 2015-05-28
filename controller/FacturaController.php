@@ -58,12 +58,12 @@
 					$Servicio->setId($facturaNueva['id']);
 					$Servicio->setNombre($servicio1[0]);
 					$Servicio->setPrecio($servicio1[1]);
-					$Servicio->GuardarServicio(); 
+					$_SESSION['error'] = $Servicio->GuardarServicio(); 
 				}
 
 				$Solicitud->setId($_POST['id']);
 				$Solicitud->setEstado("2");
-				echo  $Solicitud->CambiarEstado();
+				$_SESSION['error'] = $_SESSION['error'].$Solicitud->CambiarEstado();
 			}else{
 				$solicitud = $Solicitud->getBy('id',$_GET['id']);
 				$cliente =  $Usuarios->getBy('cedula',$solicitud['cliente']);
@@ -81,13 +81,6 @@
 			}
 		}
 
-		public function Pago()
-		{
-			if($_SERVER['REQUEST_METHOD']=='GET'){
-				
-			}
-		}
-
 		public function NuevaFactura($cliente, $total){
 			$Factura = new Factura();
 			
@@ -100,7 +93,6 @@
 			$_SESSION['error'] = $Factura->GuardarFactura2();
 				
 			return $Factura->UltimaFactura();
-			
 		}
 
 	}
