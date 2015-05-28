@@ -51,21 +51,23 @@
 				$estado = $respuesta->GuardarSolicitudAsesor();
 
 				if($this->ComprovarEstadoRespuesta($estado)){
-					$_SESSION['error'] = "NO SE LOGRO RESPONDER LA SOLICITUD DEBIDO A ERROR ".$estado;
+					$_SESSION['error'] = "NO SE LOGRO RESPONDER LA SOLICITUD DEBIDO A ERROR Guardar Respuesta".$estado;
 				}else{
 					if($this->CambiarEstadoSolicitud($_POST['solicitud'],"1")){
 						
 						$destinatario = $this->ObtenerEmailUsuario($_POST['solicitud']);
 						$remitente = $this->ObtenerEmailAsesor($_POST['solicitud']);
-						$mensaje = $this->ConstruirMensaje($destinatario,$respuesta);
+						$mensaje = $this->ConstruirMensaje($destinatario, $remitente,$respuesta);
 
-						$this->EnviarRespuestaCorrero($remitente, $destinatario['email'],$mensaje);
-						header("Location: /EngineDevelop/index.php/SolicitudAsesor/index");
+						$this->EnviarRespuestaCorrero($remitente, $destinatario,$mensaje);
+						
 					}else{
 						$_SESSION['error'] = "NO SE LOGRO RESPONDER LA SOLICITUD DEBIDO A ERROR ";
+						
 					}
 					
 				}
+				header("Location: /EngineDevelop/index.php/SolicitudAsesor/index");
 			}
 		}
 
@@ -110,27 +112,50 @@
 			}
 		}
 
-		private function ConstruirMensaje($destinatario, $respuesta)
+		private function ConstruirMensaje($destinatario, $remitente, $respuesta)
 		{
 
-			return "Señor(a) ".$destinatario['nombre']." ".$destinatario['apellido']."\r\n
-			Le quiero comertar que a su solicitud ".$respuesta->getRespuesta()." a sido respondida para que este disponible para el dia
-			".$respuesta->getFecha()." a las ".$respuesta->getHora()." para darle solucion a su problema, mas informacion consulta la
-			 platafomra";
+			return "<h3>Se&ntildeor(a) ".$destinatario['nombre']." ".$destinatario['apellido']."</h3>
+			<p>Su solicitud a sido respondida. para mas informacion ingrese a la plataforma Engien$Develop </p>
+			<p> Visita para solucion</p>
+			<p> Dia: ".$respuesta->getFecha()." a las ".$respuesta->getHora()." </p>
+			 <h3>Atentamente</h3>
+			 <h4>".$remitente['nombre']." ".$remitente['apellido']."</h4>
+			 <h4>Asesor de Servicios Engine&Develop</h4>
+			 ";
 		}
 
 		private function EnviarRespuestaCorrero($remitente, $destinatario, $mensaje)
 		{
-			$headers = 'From: '.$destinatario."\r\n".
-			'Reply-To:'.$destinatario."\r\n".
-			'X-Mailer: PHP/'.phpversion();
+			global $correo;
+			include("config/class.phpmailer.php");
+			include("config/class.smtp.php");
+			$mail = new PHPMailer();
+			$mail->IsSMTP();
+			$mail->SMTPAuth = true;
+			$mail->SMTPSecure = "ssl";
+			$mail->Host = "smtp.gmail.com";
+			$mail->Port = 465;
+			$mail->Username = "engine.develop1@gmail.com";
+			$mail->Password = "enginedebelop123";
 			
-			$estado = mail($destinatario, "Respuesta a solicitud de Engine&Develop", $mensaje, $headers);
-			if($estado){
-			    $_SESSION['error']  = "Mensaje enviado";
-			}else{
-			    $_SESSION['error']  =  "Mensaje no enviado";
+			  
+			$mail->From = "engine.develop1@gmail.com";//"probando@jaja.com";
+			$mail->FromName = "ENGINE";
+			$mail->Subject = "TIENES RESPUESTA A UNA SOLICITUD !";
+			
+			$mail->MsgHTML("<div>".$mensaje."</div>");
+			//$mail->AddAttachment("files/files.zip");
+			//$mail->AddAttachment("files/img03.jpg");
+			$mail->AddAddress($destinatario['email'], $destinatario['nombre'].' '.$destinatario['apellido']);
+			$mail->IsHTML(true);
+			
+			if(!$mail->Send()) {
+			  $_SESSION = $mail->ErrorInfo;
+		
 			}
 		}
+
+		
 	}
  ?>
