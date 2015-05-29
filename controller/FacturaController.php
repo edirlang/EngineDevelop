@@ -51,6 +51,7 @@
 				$Factura->setCliente($cliente);
 				$Factura->setEstado('0');
 				$Factura->GuardarFactura();
+				$this->EnviarCorreo($Factura);
 
 				foreach ($servicios as $servicio1) {
 					$Servicio = new Servicio();
@@ -64,6 +65,7 @@
 				$Solicitud->setId($_POST['id']);
 				$Solicitud->setEstado("2");
 				$_SESSION['error'] = $_SESSION['error'].$Solicitud->CambiarEstado();
+				
 			}else{
 				$solicitud = $Solicitud->getBy('id',$_GET['id']);
 				$cliente =  $Usuarios->getBy('cedula',$solicitud['cliente']);
@@ -95,5 +97,49 @@
 			return $Factura->UltimaFactura();
 		}
 
+		public function EnviarCorreo($factura)
+		{
+			global $correo;
+			require_once "config/class.phpmailer.php";
+			require_once "config/class.smtp.php";
+			require_once 'model/Usuarios.php';
+			$Usuarios = new Usuarios();
+			$usuario = $Usuarios->getBy('cedula', $factura->getCliente());
+			$asesor = $Usuarios->getBy('cedula', $factura->getAsesor());
+			
+			$mensaje = "<h3>Se&ntildeor(a) ".$usuario['nombre']." ".$usuario['apellido']."</h3>
+			<p>Se ha generado una factura para el pago del servicio solicitado, por favor ingrese a la plataforma Engien$Develop para realizar el pago</p>
+			<p> Factura ".$factura->getId()."</p>
+			<p> Total: ".$factura->getTotal()."</p>
+			 <h3>Atentamente</h3>
+			 <h4>".$asesor['nombre']." ".$asesor['apellido']."</h4>
+			 <h4>Asesor de Servicios Engine&Develop</h4>
+			 ";
+
+			$mail = new PHPMailer();
+			$mail->IsSMTP();
+			$mail->SMTPAuth = true;
+			$mail->SMTPSecure = "ssl";
+			$mail->Host = "smtp.gmail.com";
+			$mail->Port = 465;
+			$mail->Username = "engine.develop1@gmail.com";
+			$mail->Password = "enginedebelop123";
+			
+			  
+			$mail->From = "engine.develop1@gmail.com";//"probando@jaja.com";
+			$mail->FromName = "ENGINE";
+			$mail->Subject = "Pago de servicios";
+			
+			$mail->MsgHTML("<div>".$mensaje."</div>");
+			//$mail->AddAttachment("files/files.zip");
+			//$mail->AddAttachment("files/img03.jpg");
+			$mail->AddAddress($usuario['email'], $usuario['nombre'].' '.$usuario['apellido']);
+			$mail->IsHTML(true);
+			
+			if(!$mail->Send()) {
+			  $_SESSION['error'] = $mail->ErrorInfo;
+	
+			}
+		}
 	}
  ?>

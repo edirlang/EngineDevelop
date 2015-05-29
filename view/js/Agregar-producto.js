@@ -63,7 +63,6 @@ function VaciarFormulario(){
 
 function Enviar(){
   var jdatos = JSON.stringify(servicios); 
-  alert($("#total").text());
   $.post("Nueva",{
     num_fact: $("#numero").val(),
     id: $("#solicitud").val(),

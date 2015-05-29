@@ -6,7 +6,7 @@
       <th>Fecha</th>
       <th>Hora</th>
       <th>Cliente</th>
-      <th>factura</th>
+      <th>Asesor</th>
       <th>Total</th>
       <th></th>
     </tr>

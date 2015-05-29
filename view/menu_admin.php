@@ -3,7 +3,6 @@
     <a class="navbar-brand" href="admin"><span class="glyphicon glyphicon-home"></span> HOME</a>
     <ul class="nav navbar-nav">
       <li ><a href="/EngineDevelop/index.php/Usuarios/index">Clientes</a></li>
-      <li><a href="/EngineDevelop/index.php/index/Mision"> Chat</a></li>
       <li><a href="/EngineDevelop/index.php/Empresa/index">Empresas</a></li>
       <li><a href="/EngineDevelop/index.php/Asesor/index">Empleados</a></li>
       <li><a href="/EngineDevelop/index.php/Oferta/index">Ofertas</a></li>
