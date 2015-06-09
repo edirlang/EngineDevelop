@@ -10,7 +10,7 @@
 			$this->$servidor="localhost";
 			$this->$puerto="";
 			$this->$usuario="root";
-			$this->$password="12345";
+			$this->$password="";
 			$this->$BD = "enginedevelop";
 		}
 
